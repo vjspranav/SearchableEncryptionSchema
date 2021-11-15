@@ -1,5 +1,7 @@
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
+var SearchableEncryptionScheme = artifacts.require(
+  "./SearchableEncryptionScheme.sol"
+);
 
-module.exports = function(deployer) {
-  deployer.deploy(SimpleStorage);
+module.exports = function (deployer) {
+  deployer.deploy(SearchableEncryptionScheme);
 };

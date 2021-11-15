@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.5.0;
+pragma experimental ABIEncoderV2;
 
 // contract SimpleStorage {
 //   uint storedData;
@@ -14,13 +15,21 @@ pragma solidity ^0.5.0;
 // }
 
 // Create a smart contract to implement Searchable Encryption Scheme
-contract SimpleStorage {
+contract SearchableEncryptionScheme {
   // Create a mapping of keywords to data
   mapping(string => string) keywordToData;
   
   // Allow authenticated user to store mapping of keyword to encrypted data
   function store(string memory keyword, string memory encryptedData) public {
     keywordToData[keyword]=encryptedData;
+  }
+
+  // Store array keywords and encrypted data in a mapping
+  function storeMultiple(string[] memory keywords, string memory encryptedData) public {
+
+    for (uint i = 0; i < keywords.length; i++) {
+      keywordToData[keywords[i]] = encryptedData;
+    }
   }
 
   // Allow authenticated user to retrieve encrypted data using keyword
