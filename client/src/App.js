@@ -12,6 +12,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import EthCrypto from "eth-crypto";
 
 export const BlockchainContext = createContext();
 
@@ -23,6 +24,9 @@ const App = (props) => {
     userAccount: null,
   });
   const [output, setOutput] = useState("");
+  const [decryptedText, setDecryptedText] = useState("");
+  const privateKey =
+    "06ec5fb4363c574b63f8d72724623fc2672427ad43156ca3c985dec550003340";
   useEffect(() => {
     const init = async () => {
       try {
@@ -113,6 +117,30 @@ const App = (props) => {
                 color="primary"
                 onClick={async () => {
                   const message = document.getElementById("message").value;
+                  // Encrypt the message using private key without using contract
+                  // const encryptedMessage =
+                  //   await blockchain.web3.eth.accounts.sign(
+                  //     message,
+                  //     blockchain.userAccount
+                  //   );
+                  const publicKey = EthCrypto.publicKeyByPrivateKey(privateKey);
+                  const encrypted = await EthCrypto.encryptWithPublicKey(
+                    publicKey, // encrypt with alice's publicKey
+                    message
+                  );
+                  console.log("Encrypted: ", encrypted);
+                  const decrypted = await EthCrypto.decryptWithPrivateKey(
+                    privateKey,
+                    encrypted
+                  );
+                  console.log("Decrypted: ", decrypted);
+                  // Verify the signature using public key
+                  // const verified = blockchain.web3.utils.isValidSignature(
+                  //   message,
+                  //   encryptedMessage.signature,
+                  //   blockchain.userAccount
+                  // );
+
                   // Get keywords array separated by space or ,
                   const keywords = document.getElementById("keywords").value;
                   const keywordsArray = keywords.split(/[ ,]+/);
@@ -162,6 +190,7 @@ const App = (props) => {
                   const response = await blockchain.contract.methods
                     .retrieve(message)
                     .call({ from: blockchain.userAccount, gas: 3000000 });
+
                   setOutput(response);
                 }}
               >
