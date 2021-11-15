@@ -1,5 +1,10 @@
 # This project was bootstrapped with [boxes/react](https://www.trufflesuite.com/boxes/react).
 
+## TODO
+
+- [ ] Store encrypted object, with user sign
+- [ ] Retrieve encrypted object after sign verification
+
 ## Available Scripts
 
 Run the development console.
