@@ -2,8 +2,6 @@
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
-import {Seriality} from './Seriality.sol';
-
 // contract SimpleStorage {
 //   uint storedData;
 
@@ -17,29 +15,33 @@ import {Seriality} from './Seriality.sol';
 // }
 
 // Create a smart contract to implement Searchable Encryption Scheme
-contract SearchableEncryptionScheme is Seriality {
-  function getBytes(uint startindex, uint endindex, string [] memory arr) public view returns(bytes memory serialized){
+contract SearchableEncryptionScheme {
 
-      require(endindex >= startindex);
-      endindex = arr.length - 1;
+  // function getBytes(uint startindex, uint endindex, string [] memory arr) public view returns(bytes memory serialized){
+
+  //     require(endindex >= startindex);
       
-      //64 byte is needed for safe storage of a single string.
-      //((endindex - startindex) + 1) is the number of strings we want to pull out.
-      uint offset = 64*((endindex - startindex) + 1);
+  //     if(endindex > (arr.length - 1)){
+  //         endindex = arr.length - 1;
+  //     }
       
-      bytes memory buffer = new  bytes(offset); 
-      string memory out1  = new string(32);
+  //     //64 byte is needed for safe storage of a single string.
+  //     //((endindex - startindex) + 1) is the number of strings we want to pull out.
+  //     uint offset = 64*((endindex - startindex) + 1);
+      
+  //     bytes memory buffer = new  bytes(offset); 
+  //     string memory out1  = new string(32);
       
       
-      for(uint i = startindex; i <= endindex; i++){
-          out1 = arr[i];
+  //     for(uint i = startindex; i <= endindex; i++){
+  //         out1 = arr[i];
           
-          stringToBytes(offset, bytes(out1), buffer);
-          offset -= sizeOfString(out1);
-      }
+  //         stringToBytes(offset, bytes(out1), buffer);
+  //         offset -= sizeOfString(out1);
+  //     }
     
-    return (buffer);
-  }
+  //   return (buffer);
+  // }
 
   // Create a mapping of keywords to data
   mapping(string => string[]) keywordToData;
@@ -61,8 +63,8 @@ contract SearchableEncryptionScheme is Seriality {
   function retrieve(string memory keyword) public view returns (string memory) {
     // Stringify and return
     // encode array of strings
-    // return getBytes(0, keywordToData[keyword].length-1, keywordToData[keyword]);
-    return keywordToData[keyword][2];
+    // getBytes(0, keywordToData[keyword].length, keywordToData[keyword]);
+    return keywordToData[keyword][0];
   }
 
 }

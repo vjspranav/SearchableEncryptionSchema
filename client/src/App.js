@@ -64,28 +64,6 @@ const App = (props) => {
     init();
   }, []);
 
-  const convert = (hex) => {
-    let str = "";
-    for (let i = 0; i < hex.length; i += 2) {
-      var v = parseInt(hex.substr(i, 2), 16);
-      if (v) str += String.fromCharCode(v);
-    }
-    console.log(str);
-    let params = [];
-    let res = "";
-    for (let i = 0; i <= str.length; i++) {
-      if (str.charCodeAt(i) > 31) {
-        res = res + str[i];
-      } else {
-        console.log("in else");
-        params.push(res);
-        res = "";
-      }
-    }
-    params.pop();
-    return params;
-  };
-
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
@@ -207,8 +185,7 @@ const App = (props) => {
                   const encryptedString = await blockchain.contract.methods
                     .retrieve(message)
                     .call({ from: blockchain.userAccount, gas: 3000000 });
-                  console.log("Encrypted: ", encryptedString);
-                  // console.log("Recieved: ", convert(encryptedString));
+                  console.log("Recieved: ", encryptedString);
                   return;
                   const encryptedObject =
                     EthCrypto.cipher.parse(encryptedString);
