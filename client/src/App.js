@@ -26,7 +26,7 @@ const App = (props) => {
   const [output, setOutput] = useState("");
   const [decryptedText, setDecryptedText] = useState("");
   const privateKey =
-    "06ec5fb4363c574b63f8d72724623fc2672427ad43156ca3c985dec550003340";
+    "da6de7b828a0fd01dd6cc15c5553a353093e9819fba86096cc3109d9d73967b1";
   useEffect(() => {
     const init = async () => {
       try {
@@ -186,7 +186,6 @@ const App = (props) => {
                     .retrieve(message)
                     .call({ from: blockchain.userAccount, gas: 3000000 });
                   console.log("Recieved: ", encryptedString);
-                  return;
                   const encryptedObject =
                     EthCrypto.cipher.parse(encryptedString);
 
@@ -205,6 +204,7 @@ const App = (props) => {
                   if (senderAddress.toLowerCase() === blockchain.userAccount) {
                     console.log("Signature is valid");
                     alert("Signature is valid");
+                    setOutput(decryptedPayload.message);
                   } else {
                     console.log(
                       senderAddress.toLowerCase(),
@@ -212,9 +212,9 @@ const App = (props) => {
                     );
                     console.log("Signature is invalid");
                     alert("Signature is invalid");
+                    setOutput(encryptedString);
                   }
                   console.log(senderAddress, publicKey);
-                  setOutput(decryptedPayload.message);
                 }}
               >
                 GetValue
