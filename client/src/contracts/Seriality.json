@@ -1,0 +1,414 @@
+{
+  "contractName": "Seriality",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Seriality.sol\":\"Seriality\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/BytesToTypes.sol\":{\"keccak256\":\"0x1e2673d896abede0b04c256bdc906432ab74f48f0312a3ecbeef9058a696a93f\",\"urls\":[\"bzz-raw://835ada4a68e62d9681ec2c9edce603fa1b0febefd60d9c70bf9ed9a65eec86cf\",\"dweb:/ipfs/QmdoB9WVQ9YY79kc97CTpUif6EbicUL8rLrk5E1uFPHaXE\"]},\"project:/contracts/Seriality.sol\":{\"keccak256\":\"0x1e57339dfffcc1ca208ebc60f9dae3ad5fb0ef0408622e38748ee177579ea97f\",\"urls\":[\"bzz-raw://1c0ba7167f5656b384db8bc3cce626cbaffa677b4494896ab8573eaf2c6fb389\",\"dweb:/ipfs/QmdbngziurajMUfonQRJH2pny6M4WNqiiQpHCxtmEV1fyz\"]},\"project:/contracts/SizeOf.sol\":{\"keccak256\":\"0x033c23c01197fa70f657f05ec7871e360a2b4ab7a28195242e1c203f054105de\",\"urls\":[\"bzz-raw://9c1724002f596be51405d098049351d281d692b5209051380ef2653b12841c73\",\"dweb:/ipfs/QmRWdYrWpSYVFNPd7uNH781cQjwNwZGzxkuBygUV3sa9LC\"]},\"project:/contracts/TypesToBytes.sol\":{\"keccak256\":\"0x20d22a44d5818ef063b78e932134bb894ae00c6710cd06ee68980ac1fa860e78\",\"urls\":[\"bzz-raw://d6d9816cb26a95aade746a0c55b6e3d4f54dec00e1d4629b6d1b969a4c1307f3\",\"dweb:/ipfs/Qma7a6HUFELfHctbqciTs46VEQNiUVTMXz3bG2GeZB6vcx\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820f99aecd2749c642f57c608685b99a63e074581a9e399659936d4a93314f9e21a64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820f99aecd2749c642f57c608685b99a63e074581a9e399659936d4a93314f9e21a64736f6c63430005100032",
+  "sourceMap": "301:100:3:-;;;367:31;8:9:-1;5:2;;;30:1;27;20:12;5:2;367:31:3;301:100;;;;;;",
+  "deployedSourceMap": "301:100:3:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\r\n\r\n/**\r\n * @title Seriality\r\n * @dev The Seriality contract is the main interface for serializing data using the TypeToBytes, BytesToType and SizeOf\r\n * @author pouladzade@gmail.com\r\n */\r\n \r\nimport \"./BytesToTypes.sol\";\r\nimport \"./TypesToBytes.sol\";\r\nimport \"./SizeOf.sol\";\r\n\r\ncontract Seriality is BytesToTypes, TypesToBytes, SizeOf {\r\n\r\n    constructor() public {\r\n\r\n    }\r\n}\r\n",
+  "sourcePath": "D:\\Lang\\RIS\\SearchableEncryption\\contracts\\Seriality.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Seriality.sol",
+    "exportedSymbols": {
+      "Seriality": [
+        992
+      ]
+    },
+    "id": 993,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 978,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "absolutePath": "project:/contracts/BytesToTypes.sol",
+        "file": "./BytesToTypes.sol",
+        "id": 979,
+        "nodeType": "ImportDirective",
+        "scope": 993,
+        "sourceUnit": 780,
+        "src": "215:28:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/TypesToBytes.sol",
+        "file": "./TypesToBytes.sol",
+        "id": 980,
+        "nodeType": "ImportDirective",
+        "scope": 993,
+        "sourceUnit": 1168,
+        "src": "245:28:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/SizeOf.sol",
+        "file": "./SizeOf.sol",
+        "id": 981,
+        "nodeType": "ImportDirective",
+        "scope": 993,
+        "sourceUnit": 1069,
+        "src": "275:22:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 982,
+              "name": "BytesToTypes",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 779,
+              "src": "323:12:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BytesToTypes_$779",
+                "typeString": "contract BytesToTypes"
+              }
+            },
+            "id": 983,
+            "nodeType": "InheritanceSpecifier",
+            "src": "323:12:3"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 984,
+              "name": "TypesToBytes",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1167,
+              "src": "337:12:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_TypesToBytes_$1167",
+                "typeString": "contract TypesToBytes"
+              }
+            },
+            "id": 985,
+            "nodeType": "InheritanceSpecifier",
+            "src": "337:12:3"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 986,
+              "name": "SizeOf",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1068,
+              "src": "351:6:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SizeOf_$1068",
+                "typeString": "contract SizeOf"
+              }
+            },
+            "id": 987,
+            "nodeType": "InheritanceSpecifier",
+            "src": "351:6:3"
+          }
+        ],
+        "contractDependencies": [
+          779,
+          1068,
+          1167
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 992,
+        "linearizedBaseContracts": [
+          992,
+          1068,
+          1167,
+          779
+        ],
+        "name": "Seriality",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 990,
+              "nodeType": "Block",
+              "src": "388:10:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 991,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 988,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "378:2:3"
+            },
+            "returnParameters": {
+              "id": 989,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "388:0:3"
+            },
+            "scope": 992,
+            "src": "367:31:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 993,
+        "src": "301:100:3"
+      }
+    ],
+    "src": "0:403:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/Seriality.sol",
+      "exportedSymbols": {
+        "Seriality": [
+          992
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 978,
+        "name": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 780,
+          "absolutePath": "project:/contracts/BytesToTypes.sol",
+          "file": "./BytesToTypes.sol",
+          "scope": 993,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 979,
+        "name": "ImportDirective",
+        "src": "215:28:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1168,
+          "absolutePath": "project:/contracts/TypesToBytes.sol",
+          "file": "./TypesToBytes.sol",
+          "scope": 993,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 980,
+        "name": "ImportDirective",
+        "src": "245:28:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1069,
+          "absolutePath": "project:/contracts/SizeOf.sol",
+          "file": "./SizeOf.sol",
+          "scope": 993,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 981,
+        "name": "ImportDirective",
+        "src": "275:22:3"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            779,
+            1068,
+            1167
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            992,
+            1068,
+            1167,
+            779
+          ],
+          "name": "Seriality",
+          "scope": 993
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "BytesToTypes",
+                  "referencedDeclaration": 779,
+                  "type": "contract BytesToTypes"
+                },
+                "id": 982,
+                "name": "UserDefinedTypeName",
+                "src": "323:12:3"
+              }
+            ],
+            "id": 983,
+            "name": "InheritanceSpecifier",
+            "src": "323:12:3"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "TypesToBytes",
+                  "referencedDeclaration": 1167,
+                  "type": "contract TypesToBytes"
+                },
+                "id": 984,
+                "name": "UserDefinedTypeName",
+                "src": "337:12:3"
+              }
+            ],
+            "id": 985,
+            "name": "InheritanceSpecifier",
+            "src": "337:12:3"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "SizeOf",
+                  "referencedDeclaration": 1068,
+                  "type": "contract SizeOf"
+                },
+                "id": 986,
+                "name": "UserDefinedTypeName",
+                "src": "351:6:3"
+              }
+            ],
+            "id": 987,
+            "name": "InheritanceSpecifier",
+            "src": "351:6:3"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 992,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 988,
+                "name": "ParameterList",
+                "src": "378:2:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 989,
+                "name": "ParameterList",
+                "src": "388:0:3"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 990,
+                "name": "Block",
+                "src": "388:10:3"
+              }
+            ],
+            "id": 991,
+            "name": "FunctionDefinition",
+            "src": "367:31:3"
+          }
+        ],
+        "id": 992,
+        "name": "ContractDefinition",
+        "src": "301:100:3"
+      }
+    ],
+    "id": 993,
+    "name": "SourceUnit",
+    "src": "0:403:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-11-18T10:23:28.765Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
