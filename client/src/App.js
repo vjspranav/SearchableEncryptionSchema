@@ -12,7 +12,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import EthCrypto from "eth-crypto";
+import EthCrypto, { publicKey } from "eth-crypto";
 
 export const BlockchainContext = createContext();
 
@@ -117,36 +117,31 @@ const App = (props) => {
                 color="primary"
                 onClick={async () => {
                   const message = document.getElementById("message").value;
-                  // Encrypt the message using private key without using contract
-                  // const encryptedMessage =
-                  //   await blockchain.web3.eth.accounts.sign(
-                  //     message,
-                  //     blockchain.userAccount
-                  //   );
                   const publicKey = EthCrypto.publicKeyByPrivateKey(privateKey);
-                  const encrypted = await EthCrypto.encryptWithPublicKey(
-                    publicKey, // encrypt with alice's publicKey
-                    message
-                  );
-                  console.log("Encrypted: ", encrypted);
-                  const decrypted = await EthCrypto.decryptWithPrivateKey(
+                  console.log("PublicKey: ", publicKey);
+                  const signature = EthCrypto.sign(
                     privateKey,
-                    encrypted
+                    EthCrypto.hash.keccak256(message)
                   );
-                  console.log("Decrypted: ", decrypted);
-                  // Verify the signature using public key
-                  // const verified = blockchain.web3.utils.isValidSignature(
-                  //   message,
-                  //   encryptedMessage.signature,
-                  //   blockchain.userAccount
-                  // );
+                  const payload = {
+                    message: message,
+                    signature,
+                  };
 
+                  const encrypted = await EthCrypto.encryptWithPublicKey(
+                    publicKey, // by encryping with bobs publicKey, only bob can decrypt the payload with his privateKey
+                    JSON.stringify(payload) // we have to stringify the payload before we can encrypt it
+                  );
+
+                  const encryptedString = EthCrypto.cipher.stringify(encrypted);
+
+                  console.log("Encrypted: ", encryptedString);
                   // Get keywords array separated by space or ,
                   const keywords = document.getElementById("keywords").value;
                   const keywordsArray = keywords.split(/[ ,]+/);
                   console.log(message, [...new Set(keywordsArray)]);
                   await blockchain.contract.methods
-                    .storeMultiple([...new Set(keywordsArray)], message)
+                    .storeMultiple([...new Set(keywordsArray)], encryptedString)
                     .send({ from: blockchain.userAccount, gas: 3000000 });
                 }}
               >
@@ -187,11 +182,39 @@ const App = (props) => {
                 onClick={async () => {
                   const message =
                     document.getElementById("output-keyword").value;
-                  const response = await blockchain.contract.methods
+                  const encryptedString = await blockchain.contract.methods
                     .retrieve(message)
                     .call({ from: blockchain.userAccount, gas: 3000000 });
+                  console.log("Recieved: ", encryptedString);
+                  return;
+                  const encryptedObject =
+                    EthCrypto.cipher.parse(encryptedString);
 
-                  setOutput(response);
+                  console.log("Object: ", encryptedObject);
+                  const decrypted = await EthCrypto.decryptWithPrivateKey(
+                    privateKey,
+                    encryptedObject
+                  );
+
+                  const decryptedPayload = JSON.parse(decrypted);
+                  // check signature
+                  const senderAddress = EthCrypto.recover(
+                    decryptedPayload.signature,
+                    EthCrypto.hash.keccak256(decryptedPayload.message)
+                  );
+                  if (senderAddress.toLowerCase() === blockchain.userAccount) {
+                    console.log("Signature is valid");
+                    alert("Signature is valid");
+                  } else {
+                    console.log(
+                      senderAddress.toLowerCase(),
+                      blockchain.userAccount
+                    );
+                    console.log("Signature is invalid");
+                    alert("Signature is invalid");
+                  }
+                  console.log(senderAddress, publicKey);
+                  setOutput(decryptedPayload.message);
                 }}
               >
                 GetValue

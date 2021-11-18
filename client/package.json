@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "big-integer": "^1.6.51",
     "eth-crypto": "^2.1.0",
     "react": "16.11.0",
     "react-dom": "16.11.0",

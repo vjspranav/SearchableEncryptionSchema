@@ -16,25 +16,55 @@ pragma experimental ABIEncoderV2;
 
 // Create a smart contract to implement Searchable Encryption Scheme
 contract SearchableEncryptionScheme {
+
+  // function getBytes(uint startindex, uint endindex, string [] memory arr) public view returns(bytes memory serialized){
+
+  //     require(endindex >= startindex);
+      
+  //     if(endindex > (arr.length - 1)){
+  //         endindex = arr.length - 1;
+  //     }
+      
+  //     //64 byte is needed for safe storage of a single string.
+  //     //((endindex - startindex) + 1) is the number of strings we want to pull out.
+  //     uint offset = 64*((endindex - startindex) + 1);
+      
+  //     bytes memory buffer = new  bytes(offset); 
+  //     string memory out1  = new string(32);
+      
+      
+  //     for(uint i = startindex; i <= endindex; i++){
+  //         out1 = arr[i];
+          
+  //         stringToBytes(offset, bytes(out1), buffer);
+  //         offset -= sizeOfString(out1);
+  //     }
+    
+  //   return (buffer);
+  // }
+
   // Create a mapping of keywords to data
-  mapping(string => string) keywordToData;
+  mapping(string => string[]) keywordToData;
   
   // Allow authenticated user to store mapping of keyword to encrypted data
   function store(string memory keyword, string memory encryptedData) public {
-    keywordToData[keyword]=encryptedData;
+    keywordToData[keyword].push(encryptedData);
   }
 
   // Store array keywords and encrypted data in a mapping
   function storeMultiple(string[] memory keywords, string memory encryptedData) public {
 
     for (uint i = 0; i < keywords.length; i++) {
-      keywordToData[keywords[i]] = encryptedData;
+      keywordToData[keywords[i]].push(encryptedData);
     }
   }
 
   // Allow authenticated user to retrieve encrypted data using keyword
   function retrieve(string memory keyword) public view returns (string memory) {
-    return keywordToData[keyword];
+    // Stringify and return
+    // encode array of strings
+    // getBytes(0, keywordToData[keyword].length, keywordToData[keyword]);
+    return keywordToData[keyword][0];
   }
 
 }
